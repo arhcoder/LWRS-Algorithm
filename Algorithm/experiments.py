@@ -5,33 +5,33 @@ from logrps import logrps
 #* repeating the selection experiment a lot of times:
 times = int(input("\nRepetitions: "))
 
-#? Example list of 10 elements;
-#* The algorithm has to recieve this list and select randomly one element;
+#? Example list of 10 objects;
+#* The algorithm has to recieve this list and select randomly one object;
 #* By repeating the selection a lot of times, the result has to be that the
-#* first element "E1" is the most frecuent selected, and then "E2", etc.
+#* first object "Obj1" is the most frecuent selected, and then "Obj2", etc.
 #! IF YOU  WANT TO MAKE SOME EXPERIMENTS WITH AN OWN IDEA OF SELECTION LIST
-#! YOU JUST HAVE TO PUT INTO THE LIST "elements" WHATEVER YOU WANT!
-elements: list = ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "E10"]
+#! YOU JUST HAVE TO PUT INTO THE LIST "objects" WHATEVER YOU WANT!
+objects: list = ["Obj1", "Obj2", "Obj3", "Obj4", "Obj5", "Obj6", "Obj7", "Obj8", "Obj9", "Obj10"]
 counter = []
-n = len(elements)
+n = len(objects)
 
 #? Fills a counter vector with 0's; it will contains the amount of times that
-#? each element of the list was selected:
+#? each object of the list was selected:
 for i in range(0, n):
     counter.append(0)
 
 #/ Does all the repetitions of the experiment using the logrps function to select
-#/ something on the list; and counts the times that each element was selected.
+#/ something on the list; and counts the times that each object was selected:
 for _ in range(0, times):
-    selected = logrps(elements)
-    index = elements.index(selected)
+    selected = logrps(objects)
+    index = objects.index(selected)
     counter[index] += 1
 
 #? Prints the data from the counter:
-print(f"Elements on list: {n}")
+print(f"Objects on list: {n}")
 print("\nSelected times:")
 for i in range(0, n):
-    print(f"Element #{i+1} [{elements[i]}]: {counter[i]} times selected;")
+    print(f"Object #{i+1} [{objects[i]}]: {counter[i]} times selected;")
 
 
 # Draws the line in a graph:
@@ -39,7 +39,7 @@ plt.rcParams["figure.figsize"] = [10, 5]
 plt.rcParams["figure.autolayout"] = True
 
 # Points with:
-# (element, amountOfSelections ):
+# (object, amountOfSelections ):
 # points: list = []
 x_values: list = []
 y_values: list = []
@@ -53,16 +53,16 @@ for i in range(0, n):
 # Shows the graphic:
 plt.title("LOGARITHMIC RANDOM PONDERATED SELECTOR")
 plt.ylabel("Amount of selected times")
-plt.xlabel("Number of element")
-info = f"For {n} elements;\nWith {times} choices;"
+plt.xlabel("Number of object")
+info = f"For {n} objects;\nWith {times} choices;"
 plt.annotate(info,
 xy=(0.96, 0.8), xytext=(0, 12),
 xycoords=("axes fraction", "figure fraction"),
 textcoords="offset points",
 size=10, ha="right", va="top",
-bbox=dict(boxstyle="square,pad=1.0", fc="white", ec="b", lw=2))
+bbox=dict(boxstyle="square,pad=1.0", fc="white", ec="#8B0880", lw=2))
 
-plt.plot(x_values, y_values, "bo", linestyle="-")
+plt.plot(x_values, y_values, "o", c="#8B0880", mfc="#8B0880", linestyle="-")
 plt.savefig("logselection.png", dpi="figure")
 plt.show()
 print()
