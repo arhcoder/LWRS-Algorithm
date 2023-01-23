@@ -35,12 +35,12 @@ En el modelo se ha decidido que el sabor galleta es el favorito, por lo que debe
 
 [![Comparison between linear and logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Scales.png?raw=true "Comparison between linear and logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm "Comparison between linear and logarithmic scale")
 
-Una representación vaga de cómo luce la diferencia entre una escala lineal y una logarítmica, está mostrada en la imagen anterior; si la tomamos como ejemplo, podríamos entender el algoritmo de decisión como colocar un punto de manera aleatoria en cualquiera de las dos escalas, y cada espacio entre dos divisiones representa un objeto a seleccionar. Para el caso de la escala lineal, la probabilidad de encontrarse con el objeto entre **0 y 1,** es la misma que del objeto entre **1 y 2,** o **2 y 3.** En cambio, con la escala logarítmica, la probabilidad de caer en el objeto entre **0 y 1** es muy distinta que la del objeto entre **5 y 6.**
+Una vaga representación de cómo luce la diferencia entre una escala lineal y una logarítmica, está mostrada en la imagen anterior; si la tomamos como ejemplo, podríamos entender este algoritmo de decisión como colocar un punto de manera aleatoria en cualquiera de las dos escalas, en donde espacio entre dos divisiones representa un objeto a seleccionar. Para el caso de la escala lineal, la probabilidad de encontrarse con el objeto entre **0 y 1,** es la misma que del objeto entre **1 y 2,** o **2 y 3.** En cambio, con la escala logarítmica, la probabilidad de caer en el objeto entre **0 y 1** es muy distinta que la del objeto entre **5 y 6.**
 Utilizando datos reales para el ejemplo de escoger un sabor de helado, tendríamos la siguiente comparación de escalas:
 
 [![Linear and logarithmic scales for five flavors](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Flavors.png?raw=true "Linear and logarithmic scales for five flavors")](https://github.com/arhcoder/LRPS-Algorithm "Linear and logarithmic scales for five flavors")
 
-Esta es la forma que tiene la escala del algoritmo ***LRPS*** comparada a un algoritmo de ruleta. Si lanzáramos un punto aleatorio entre este espacio; obtendríamos las decisiones para ambos tipos de algoritmos serían:
+Esta es la forma que tiene la escala del algoritmo ***LRPS*** comparada a un algoritmo de ruleta. Si lanzáramos un punto aleatorio entre este espacio; obtendríamos las decisiones para ambos tipos de algoritmos, que serían:
 
 [![Selection example for five flavors on linear and logarithmic scales](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Selection.png?raw=true "Selection example for five flavors on linear and logarithmic scales")](https://github.com/arhcoder/LRPS-Algorithm "Selection example for five flavors on linear and logarithmic scales")
 
@@ -52,25 +52,25 @@ Al ser más grande el espacio de la fresa con respecto al chocolate, es más pro
 <br>
 
 ### Matemáticas
-La manera de construir una escala logarítmica adaptada a la ***n*** cantidad de objetos a seleccionar es posible a través de conjunto ***P*** de puntos sobre un **eje cartesiano** en los que cada punto delimita el espacio de selección de cada uno de los ***n*** elementos de la lista, siguiendo la siguiente fórmula:
+La manera de construir una escala logarítmica adaptada a la ***n*** cantidad de objetos a seleccionar es posible a través de **conjunto *P* de puntos sobre un eje cartesiano** en los que cada punto delimita el espacio de selección de cada uno de los ***n*** elementos de la lista, utilizando la siguiente fórmula:
 
 [![Formula to build a n spaces logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Formula.png?raw=true "Formula to build a n spaces logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm "Formula to build a n spaces logarithmic scale")
 
-Es decir, dado el mismo caso de construir la escala sobre un eje cartesiano, con ***n*** cantidad de espacios (objetos) y por ende ***n*** cantidad de puntos de división, la distancia entre cada punto ***i*** y el origen (coordenada (0, 0)) está dada por la fórmula:
+Es decir, dado el mismo caso de construir la escala sobre un eje cartesiano, con ***n*** cantidad de espacios (objetos) y por ende ***n*** cantidad de puntos de división, la distancia entre cada punto ***i*** y el ***origen*** (coordenada (0, 0)) está dada por la fórmula:
 
 [![Formula for distances on a n spaces logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Distance.png?raw=true "Formula for distances on a n spaces logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm "Formula for distances on a n spaces logarithmic scale")
 
-Si se desea encontrar la coordenada del punto 1, para el ejemplo de los sabores de helados (n = 5), la coordenada sería:
+Si se desea encontrar la coordenada del punto 1, para el ejemplo de los cinco sabores de helados (n = 5), la coordenada sería:
 
 [![Calculation of the space of a point 1 in logarithmic scale with n = 5](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Point.png?raw=true "Calculation of the space of a point 1 in logarithmic scale with n = 5")](https://github.com/arhcoder/LRPS-Algorithm "Calculation of the space of a point 1 in logarithmic scale with n = 5")
 
-Entonces, si se quieren encontrar todos los puntos necesarios para construir la escala logarítmica de cinco objetos:
+Entonces, para encontrar todos los puntos necesarios para construir la escala logarítmica de cinco objetos:
 
-[![Calculation of the five points of a logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Pointsn.png?raw=true "Calculation of the five points of a logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm "Calculation of the five points of a logarithmic scale")
+[![Calculation of the five points of a logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Points.png?raw=true "Calculation of the five points of a logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm "Calculation of the five points of a logarithmic scale")
 
-[![Five spaces logarithmic scale graphing](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Points.png?raw=true "Five spaces logarithmic scale graphing")](https://github.com/arhcoder/LRPS-Algorithm "Five spaces logarithmic scale graphing")
+[![Five spaces logarithmic scale graphing](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Cartesian.png?raw=true "Five spaces logarithmic scale graphing")](https://github.com/arhcoder/LRPS-Algorithm "Five spaces logarithmic scale graphing")
 
-**Nota: El uso de eje cartesiano es innecesario para el algoritmo, puesto que sólo se necesita saber la distancia entre el origen y cualquier otro punto de la escala; por lo que sólo será necesaria la fórmula de distancia: di = nlogₙ₊₁(i+1).**
+**Nota: El uso de eje cartesiano es innecesario para el algoritmo, puesto que sólo se necesita saber la distancia entre el origen y cualquier otro punto de la escala; por lo que sólo será necesaria la fórmula de distancia: dᵢ = nlogₙ₊₁(i+1).**
 
 <br>
 
@@ -81,14 +81,14 @@ El pseudocódigo del algoritmo de selección se muestra a continuación:
 
 Se recibe de entrada una lista de objetos de la cuál se obtiene el valor de ***n*** como la cantidad de objetos en la selección. Un par de casos de paro se dan cuando la lista está vacía o contiene sólo un elemento, en casos contrarios se procede con el resto del algoritmo, en donde se obtiene un número decimal aleatorio entre 0 y ***n***, y se inicia un ciclo de 1 hasta ***n.***
 
-Dentro del ciclo se calcula –usando la misma analogía de un plano cartesiano–  la distancia del ***"origen"*** hasta el primer punto de la escala logarítmica **(p₁),** utilizando la fórmula de distancia antes descrita. Si el punto aleatorio está entre 0 y la distancia del primer punto de la escala; es decir, si el punto aleatorio quedó antes de p₁ **(punto aleatorio <= distancia a p₁),** entonces se toma la decisión de tomar el objeto de dicho espacio (el objeto número 1), en caso de que el punto aleatorio esté por encima de este primer aleatorio, se continúa con el ciclo hasta encontrar el espacio en que cayó el punto.
+Dentro del ciclo se calcula –usando la misma analogía de un plano cartesiano–  la distancia del ***"origen"*** hasta el primer punto de la escala logarítmica **(p₁),** utilizando la fórmula de distancia antes descrita. Si el punto aleatorio está entre 0 y la distancia del primer punto de la escala; es decir, si el punto aleatorio quedó antes de p₁ **(punto aleatorio <= distancia a p₁),** entonces se toma la decisión de tomar el objeto de dicho espacio (el objeto número 1), en caso de que el punto aleatorio esté por encima de este primer punto de la escala, se continúa con el ciclo hasta encontrar el espacio en que cayó el punto.
 
-El algoritmo tiene una **complejidad lineal** de **O(n)** –con Big O notation–, recordando que ***n*** es la cantidad de objetos en la lista inicial de decisión.
+El algoritmo tiene una **complejidad lineal O(n)** –con notación ***"Big O"***–, recordando que ***n*** es la cantidad de objetos en la lista inicial de decisión.
 
 <br>
 
 ### Experimentos
-Haciendo pruebas de conteo para las decisiones tomadas por el algoritmo, a fin de comprobar el sesgo en las elecciones, **repitiendo la selección una cierta cantidad de veces y contando cuántas veces se eligió cada uno de los objetos se graficó:**
+Haciendo pruebas de conteo para las decisiones tomadas por el algoritmo, a fin de comprobar el sesgo en las elecciones, **repitiendo la selección una cierta cantidad de veces y contando cuántas veces se eligió cada uno de los objetos, se graficó:**
 
 **1. Con 5 objetos y 100 repeticiones:**
 
@@ -112,7 +112,7 @@ Haciendo pruebas de conteo para las decisiones tomadas por el algoritmo, a fin d
 
 **Se puede comprobar que se obtiene la forma de la curva de un logaritmo.**
 
-**Nota:** Para la generación de números aleatorios se utilizó la función ***random*** del **core de Python v.3.11.0 de 64 Bits.** El script de medición así como el algoritmo ***LRPS*** se encuentran en [**este repositorio**](https://github.com/arhcoder/LRPS-Algorithm "este repositorio").
+**Nota:** Para la generación de números aleatorios se utilizó la función ***random*** del **core de Python v.3.11 de 64 Bits.** El script de medición así como el algoritmo ***LRPS*** se encuentran en [**este repositorio**](https://github.com/arhcoder/LRPS-Algorithm "este repositorio").
 
 <br>
 
@@ -121,7 +121,7 @@ Esta es sólo una propuesta de algoritmo, puede ser de utilidad en; por ejemplo,
 
 En caso de que para un problema específico se quiera que dos o más objetos tengan la misma probabilidad de selección, se puede considerar –para esta implementación– que dichos objetos estén incluidos en una estructura de datos que les contenga como **UN** solo objeto, de modo que si el algoritmo los escoge, arrojará a los objetos en conjunto, posteriormente y mediante una decisión del tipo ruleta (como la escala lineal) se puede escoger alguno de estos.
 
-Consulta el código del algoritmo desde el **repositorio** principal en [**github.com/arhcoder/LRPS-Algorithm**](https://github.com/arhcoder/LRPS-Algorithm "**github.com/arhcoder/LRPS-Algorithm**"), cualquier **colaboración y/o propuesta de mejora** será bien recibida, al igual que una **estrella de GitHub.**
+Consulta el código del algoritmo desde el **repositorio principal** en [**github.com/arhcoder/LRPS-Algorithm**](https://github.com/arhcoder/LRPS-Algorithm "**github.com/arhcoder/LRPS-Algorithm**"), cualquier **colaboración y/o propuesta de mejora** será bien recibida, al igual que una **estrella de GitHub.**
 
 Escríbeme a **arhcoder@gmail.com** para cualquier inquietud, o si te resultó útil este aporte en alguna aplicación y búscame en redes sociales como **@arhcoder.**
 
