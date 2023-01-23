@@ -36,6 +36,7 @@ En el modelo se ha decidido que el sabor galleta es el favorito, por lo que debe
 [![Comparison between linear and logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Scales.png?raw=true "Comparison between linear and logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm "Comparison between linear and logarithmic scale")
 
 Una vaga representación de cómo luce la diferencia entre una escala lineal y una logarítmica, está mostrada en la imagen anterior; si la tomamos como ejemplo, podríamos entender este algoritmo de decisión como colocar un punto de manera aleatoria en cualquiera de las dos escalas, en donde espacio entre dos divisiones representa un objeto a seleccionar. Para el caso de la escala lineal, la probabilidad de encontrarse con el objeto entre **0 y 1,** es la misma que del objeto entre **1 y 2,** o **2 y 3.** En cambio, con la escala logarítmica, la probabilidad de caer en el objeto entre **0 y 1** es muy distinta que la del objeto entre **5 y 6.**
+
 Utilizando datos reales para el ejemplo de escoger un sabor de helado, tendríamos la siguiente comparación de escalas:
 
 [![Linear and logarithmic scales for five flavors](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Flavors.png?raw=true "Linear and logarithmic scales for five flavors")](https://github.com/arhcoder/LRPS-Algorithm "Linear and logarithmic scales for five flavors")
@@ -112,7 +113,7 @@ Haciendo pruebas de conteo para las decisiones tomadas por el algoritmo, a fin d
 
 **Se puede comprobar que se obtiene la forma de la curva de un logaritmo.**
 
-**Nota:** Para la generación de números aleatorios se utilizó la función ***random*** del **core de Python v.3.11 de 64 Bits.** El script de medición así como el algoritmo ***LRPS*** se encuentran en [**este repositorio**](https://github.com/arhcoder/LRPS-Algorithm "este repositorio").
+**Nota:** Para la generación de números aleatorios se utilizó la función ***random*** del **core de Python v.3.11 de 64 Bits.** El script de medición así como el algoritmo LRPS se encuentran en [**este repositorio**](https://github.com/arhcoder/LRPS-Algorithm "este repositorio").
 
 <br>
 
@@ -121,7 +122,7 @@ Esta es sólo una propuesta de algoritmo, puede ser de utilidad en; por ejemplo,
 
 En caso de que para un problema específico se quiera que dos o más objetos tengan la misma probabilidad de selección, se puede considerar –para esta implementación– que dichos objetos estén incluidos en una estructura de datos que les contenga como **UN** solo objeto, de modo que si el algoritmo los escoge, arrojará a los objetos en conjunto, posteriormente y mediante una decisión del tipo ruleta (como la escala lineal) se puede escoger alguno de estos.
 
-Consulta el código del algoritmo desde el **repositorio principal** en [**github.com/arhcoder/LRPS-Algorithm**](https://github.com/arhcoder/LRPS-Algorithm "**github.com/arhcoder/LRPS-Algorithm**"), cualquier **colaboración y/o propuesta de mejora** será bien recibida, al igual que una **estrella de GitHub.**
+Consulta el código del algoritmo desde el **repositorio principal** en [**github.com/arhcoder/LRPS-Algorithm**](https://github.com/arhcoder/LRPS-Algorithm "github.com/arhcoder/LRPS-Algorithm"), cualquier **colaboración y/o propuesta de mejora** será bien recibida, al igual que una **estrella de GitHub.**
 
 Escríbeme a **arhcoder@gmail.com** para cualquier inquietud, o si te resultó útil este aporte en alguna aplicación y búscame en redes sociales como **@arhcoder.**
 
