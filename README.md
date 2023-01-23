@@ -1,11 +1,12 @@
 # Proposal of Selection Method for Evolutionary Algorithms based on Logarithmic Scale ponderation
+
 ### By Alejandro Ramos @arhcoder
 
 <hr>
 
-#### 📓 Read the original article [here](http://google.com "here").
-#### 🔣 Lee este artículo en [español](http://google.com "español").
-#### ⭐ Give a star to [this repository](https://github.com/arhcoder/LRPS-Algorithm "this repository").
+#### 📓 Read the original article [here](https://medium.com/@arhcoder "Medium.com article link").
+#### 🔣 Lee este artículo en [español](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Article/LRPS-ES.md "Artículo en español").
+#### ⭐ Give a star to [this repository](https://github.com/arhcoder/LRPS-Algorithm "Go and click on the star").
 
 <hr>
 
@@ -18,7 +19,7 @@ When working with models that require selection mechanisms, it is common to use 
 
 The idea behind this proposal is born from the analysis of phenomena for which there are events with a greater frequency of being present, but for which the factor that determines these magnitude is not known. Being concrete, ***LRPS*** originates from my  own attempt to replicate the composition of music through genetic algorithms with randomness, being clear the fact that depending on the style of music, genre, era, etc., certain composition patterns are more common; for example:  4/4 time signature, long or short notes, simple or complex harmonies, etc. Popular music tends to have with more frequency the 4/4 signature, and only major-minor chords, slow voice melodies, relaxed rhythms, among others; It is then that in order to try to replicate the composition of popular music, we could consider these characteristics as the most common, but without neglecting the fact that it is possible to have more variety of decision.
 
-**Note:** The above mentioned project of music composition with genetic algorithms can be found at: **[github.com/arhcoder/M.I.A](https://github.com/arhcoder/M.I.A "github.com/arhcoder/M.I.A").**
+**Note:** The above mentioned project of music composition with genetic algorithms can be found at: **[github.com/arhcoder/M.I.A](https://github.com/arhcoder/M.I.A "Repository of M.I.A project").**
 
 <br>
 
@@ -33,17 +34,17 @@ If for decision-making in a model there are biases and weights without a number 
 
 In the model it has been decided that Cookies n’ cream flavor is the favorite, so its selection should be more frequent, followed by strawberry, chocolate, etc. The important issue is that there is no a tangible number that allows determining this importance bias with respect to the other flavors, it is simply known that flavors are preferred more as they are higher on the top. The logarithmic scale can provide a growth ratio based on its exponential mathematical nature:
 
-[![Comparison between linear and logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Scales.png?raw=true "Comparison between linear and logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm "Comparison between linear and logarithmic scale")
+[![Comparison between linear and logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Scales.png?raw=true "Comparison between linear and logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Scales.png?raw=true "Comparison between linear and logarithmic scale")
 
 A loose representation of what is the difference between linear and logarithmic scales looks like is shown in the image above; if we take it as an example, we could understand this decision algorithm as placing a point randomly in any of the two scales, where the space between two divisions represents an object to select. For the case of the linear scale, the probability of finding the object between **0 and 1** is the same as that of the object between **1 and 2,** or **2 and 3.** On the other hand, with the logarithmic scale, the probability of falling into the object between **0 and 1** is very different from that of the object between **5 and 6.**
 
 Using real data for the example of choosing an ice cream flavor, we would have the following scales comparison:
 
-[![Linear and logarithmic scales for five flavors](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Flavors.png?raw=true "Linear and logarithmic scales for five flavors")](https://github.com/arhcoder/LRPS-Algorithm "Linear and logarithmic scales for five flavors")
+[![Linear and logarithmic scales for five flavors](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Flavors.png?raw=true "Linear and logarithmic scales for five flavors")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Flavors.png?raw=true "Linear and logarithmic scales for five flavors")
 
 This is what the ***LRPS*** algorithm scale looks compared to a roulette algorithm. If we throw a random point in this space; we would obtain the decisions for both types of algorithms, which would be:
 
-[![Selection example for five flavors on linear and logarithmic scales](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Selection.png?raw=true "Selection example for five flavors on linear and logarithmic scales")](https://github.com/arhcoder/LRPS-Algorithm "Selection example for five flavors on linear and logarithmic scales")
+[![Selection example for five flavors on linear and logarithmic scales](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Selection.png?raw=true "Selection example for five flavors on linear and logarithmic scales")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Selection.png?raw=true "Selection example for five flavors on linear and logarithmic scales")
 
 - **(🍫) Chocolate for a roulette algorithm.**
 - **(🍓) Strawberry: for the LRPS algorithm.**
@@ -53,23 +54,23 @@ As the space of the strawberry is larger than the chocolate ones, it is more lik
 <br>
 
 ### Math
-The way to build a logarithmic scale adapted to the ***n*** quantity of objects to be selected is possible through a **P set of points on a Cartesian axis** in which each point delimits the selection space of each of the n elements of the list, using the following formula:
+The way to build a logarithmic scale adapted to the ***n*** quantity of objects to be selected is possible through a ***P* set of points on a Cartesian axis** in which each point delimits the selection space of each of the n elements of the list, using the following formula:
 
-[![Formula to build a n spaces logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Formula.png?raw=true "Formula to build a n spaces logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm "Formula to build a n spaces logarithmic scale")
+[![Formula to build a n spaces logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Formula.png?raw=true "Formula to build a n spaces logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Formula.png?raw=true "Formula to build a n spaces logarithmic scale")
 
 That is, given the same case of building the scale on a Cartesian axis, with ***n*** number of spaces (objects) and therefore ***n*** number of division points, the distance between each point ***i*** and the ***origin*** (coordinate (0, 0)) is given by the formula:
 
-[![Formula for distances on a n spaces logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Distance.png?raw=true "Formula for distances on a n spaces logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm "Formula for distances on a n spaces logarithmic scale")
+[![Formula for distances on a n spaces logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Distance.png?raw=true "Formula for distances on a n spaces logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Distance.png?raw=true "Formula for distances on a n spaces logarithmic scale")
 
 If it is wanted to find the coordinate of point 1, for the example of five ice cream flavors (with n = 5), the coordinate would be:
 
-[![Calculation of the space of a point 1 in logarithmic scale with n = 5](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Point.png?raw=true "Calculation of the space of a point 1 in logarithmic scale with n = 5")](https://github.com/arhcoder/LRPS-Algorithm "Calculation of the space of a point 1 in logarithmic scale with n = 5")
+[![Calculation of the space of a point 1 in logarithmic scale with n = 5](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Point.png?raw=true "Calculation of the space of a point 1 in logarithmic scale with n = 5")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Point.png?raw=true "Calculation of the space of a point 1 in logarithmic scale with n = 5")
 
 So, to find all the points needed to build the logarithmic scale of five objects:
 
-[![Calculation of the five points of a logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Points.png?raw=true "Calculation of the five points of a logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm "Calculation of the five points of a logarithmic scale")
+[![Calculation of the five points of a logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Points.png?raw=true "Calculation of the five points of a logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Points.png?raw=true "Calculation of the five points of a logarithmic scale")
 
-[![Five spaces logarithmic scale graphing](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Cartesian.png?raw=true "Five spaces logarithmic scale graphing")](https://github.com/arhcoder/LRPS-Algorithm "Five spaces logarithmic scale graphing")
+[![Five spaces logarithmic scale graphing](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Cartesian.png?raw=true "Five spaces logarithmic scale graphing")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Cartesian.png?raw=true "Five spaces logarithmic scale graphing")
 
 **Note: The use of the Cartesian axis is unnecessary for the algorithm, since it is only necessary to know the distance between the origin and any other point on the scale; so only the distance formula will be necessary: dᵢ = nlogₙ₊₁(i+1).**
 
@@ -78,7 +79,7 @@ So, to find all the points needed to build the logarithmic scale of five objects
 ### Algorithm:
 The pseudocode of the selection algorithm is shown below:
 
-[![LRPS Algorithm pseudocode](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/lrps-pseudocode.png?raw=true "LRPS Algorithm pseudocode")](https://github.com/arhcoder/LRPS-Algorithm "LRPS Algorithm pseudocode")
+[![LRPS Algorithm pseudocode](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/lrps-pseudocode.png?raw=true "LRPS Algorithm pseudocode")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/lrps-pseudocode.png?raw=true "LRPS Algorithm pseudocode")
 
 A list of objects is received as input from which the value of ***n*** is obtained as the number of objects in the selection. A couple of stopping cases occur when the list is empty or contains just one element, otherwise proceeds with the rest of the algorithm, where a random decimal number between 0 and ***n*** is obtained, and a loop for 1 to ***n*** is started.
 
@@ -93,27 +94,27 @@ Doing count tests for the decisions made by the algorithm in order to check the 
 
 **1. Having 5 objects and 100 repetitions:**
 
-[![5 Objects - 100 Repetitions](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/01.%205%20Objects%20-%20100%20Repetitions.png?raw=true "5 Objects - 100 Repetitions")](https://github.com/arhcoder/LRPS-Algorithm "5 Objects - 100 Repetitions")
+[![5 Objects - 100 Repetitions](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/01.%205%20Objects%20-%20100%20Repetitions.png?raw=true "5 Objects - 100 Repetitions")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/01.%205%20Objects%20-%20100%20Repetitions.png?raw=true "5 Objects - 100 Repetitions")
 
 **2. Having 5 objects and 1,000 repetitions:**
 
-[![5 Objects - 1,000 Repetitions](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/02.%205%20Objects%20-%201,000%20Repetitions.png?raw=true "5 Objects - 1,000 Repetitions")](https://github.com/arhcoder/LRPS-Algorithm "5 Objects - 1,000 Repetitions")
+[![5 Objects - 1,000 Repetitions](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/02.%205%20Objects%20-%201,000%20Repetitions.png?raw=true "5 Objects - 1,000 Repetitions")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/02.%205%20Objects%20-%201,000%20Repetitions.png?raw=true "5 Objects - 1,000 Repetitions")
 
 **3. Having 5 objects and 1,000,000 repetitions:**
 
-[![5 Objects - 1,000,000 Repetitions](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/03.%205%20Objects%20-%201,000,000%20Repetitions.png?raw=true "5 Objects - 1,000,000 Repetitions")](https://github.com/arhcoder/LRPS-Algorithm "5 Objects - 1,000,000 Repetitions")
+[![5 Objects - 1,000,000 Repetitions](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/03.%205%20Objects%20-%201,000,000%20Repetitions.png?raw=true "5 Objects - 1,000,000 Repetitions")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/03.%205%20Objects%20-%201,000,000%20Repetitions.png?raw=true "5 Objects - 1,000,000 Repetitions")
 
 **4. Having 10 objects and 100,000 repetitions:**
 
-[![10 Objects - 100,000](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/04.%2010%20Objects%20-%20100,000.png?raw=true "10 Objects - 100,000")](https://github.com/arhcoder/LRPS-Algorithm "10 Objects - 100,000")
+[![10 Objects - 100,000](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/04.%2010%20Objects%20-%20100,000.png?raw=true "10 Objects - 100,000")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/04.%2010%20Objects%20-%20100,000.png?raw=true "10 Objects - 100,000")
 
 **5. Having 20 objects and 10,000,000 repetitions:**
 
-[![20 Objects - 10,000,000 Repetitions](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/05.%2020%20Objects%20-%2010,000,000%20Repetitions.png?raw=true "20 Objects - 10,000,000 Repetitions")](https://github.com/arhcoder/LRPS-Algorithm "20 Objects - 10,000,000 Repetitions")
+[![20 Objects - 10,000,000 Repetitions](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/05.%2020%20Objects%20-%2010,000,000%20Repetitions.png?raw=true "20 Objects - 10,000,000 Repetitions")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/05.%2020%20Objects%20-%2010,000,000%20Repetitions.png?raw=true "20 Objects - 10,000,000 Repetitions")
 
 **It can be verified that the shape of a logarithm curve is obtained.**
 
-**Note:** For ***random*** numbers generation, the random function of the **64-bit Python v.3.11 core** was used. The counting-graphing script as well as the LRPS algorithm can be found on  [**this repository**](https://github.com/arhcoder/LRPS-Algorithm "this repository").
+**Note:** For ***random*** numbers generation, the random function of the **64-bit Python v.3.11 core** was used. The counting-graphing script as well as the LRPS algorithm can be found on  [**this repository**](https://github.com/arhcoder/LRPS-Algorithm "Main repository of LRPS Algorithm").
 
 <br>
 
@@ -122,7 +123,7 @@ This is just a proposal of algorithm, it may be useful in; for example, decision
 
 In the event that for a specific problem it is desired that two or more objects have the same selection probability, it can be considered –for this implementation– that these objects are included in a data structure that contains them as **ONE** single object, so that if the algorithm chooses them, it will throw the objects as a whole, later and by means of a roulette-type decision (such as the linear scale) one of these can be chosen.
 
-Check the algorithm code from the **main repository** at [**github.com/arhcoder/LRPS-Algorithm**](https://github.com/arhcoder/LRPS-Algorithm "github.com/arhcoder/LRPS-Algorithm"), **any collaboration and/or improvement proposal (pull request)** will be welcome, just like a **GitHub star.**
+Check the algorithm code from the **main repository** at [**github.com/arhcoder/LRPS-Algorithm**](https://github.com/arhcoder/LRPS-Algorithm "Main repository of LRPS Algorithm"), **any collaboration and/or improvement proposal (pull request)** will be welcome, just like a **GitHub star.**
 
 Write to me at **arhcoder@gmail.com** for any query, or if this contribution was useful to you in any application. Also look for me on social media as **@arhcoder.**
 
