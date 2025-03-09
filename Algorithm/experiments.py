@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from logrps import logrps
+from lwrs import lwrs
 
 #* It counts and verifies the bias on the selections,
 #* repeating the selection experiment a lot of times:
@@ -20,10 +20,10 @@ n = len(objects)
 for i in range(0, n):
     counter.append(0)
 
-#/ Does all the repetitions of the experiment using the logrps function to select
+#/ Does all the repetitions of the experiment using the lwrs function to select
 #/ something on the list; and counts the times that each object was selected:
 for _ in range(0, times):
-    selected = logrps(objects)
+    selected = lwrs(objects)
     index = objects.index(selected)
     counter[index] += 1
 
@@ -51,7 +51,7 @@ for i in range(0, n):
     y_values.append(counter[i])
 
 # Shows the graphic:
-plt.title("LOGARITHMIC RANDOM PONDERATED SELECTOR")
+plt.title("LOGARITHMIC WEIGHTED RANDOM SELECTOR")
 plt.ylabel("Amount of selected times")
 plt.xlabel("Number of object")
 info = f"For {n} objects;\nWith {times} choices;"

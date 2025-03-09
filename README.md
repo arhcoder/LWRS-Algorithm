@@ -1,136 +1,219 @@
-# Proposal of Selection Method for Evolutionary Algorithms based on Logarithmic Scale ponderation
+# Logarithmic Weighted Random Selector Algorithm: A Novel Approach for Biasing Selection Based on Positional Order Without Hyperparameters
 
-### By Alejandro Ramos @arhcoder
+**Iván Alejandro Ramos Herrera**
 
-<hr>
+**[@arhcoder](https://github.com/arhcoder)**
 
-#### 📓 Read the original article [here](https://medium.com/@arhcoder "Medium.com article link").
-#### 🔣 Lee este artículo en [español](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Article/LRPS-ES.md "Artículo en español").
-#### ⭐ Give a star to [this repository](https://github.com/arhcoder/LRPS-Algorithm "Go and click on the star").
+> **First publication:**
+> 
+> Ramos Herrera, I.A. (2025). *Logarithmic Weighted Random Selector Algorithm: A Novel Approach for Biasing Selection Based on Positional Order Without Hyperparameters*. In: Martínez-Villaseñor, L., Ochoa-Ruiz, G., Montes Rivera, M., Barrón-Estrada, M.L., Acosta-Mesa, H.G. (eds) *Advances in Computational Intelligence. MICAI 2024 International Workshops. MICAI 2024. Lecture Notes in Computer Science*, vol 15464. Springer, Cham. [https://doi.org/10.1007/978-3-031-83879-8_4](https://doi.org/10.1007/978-3-031-83879-8_4)
 
-<hr>
+---
 
- ***"Logarithmic Random Ponderated Selector"*** **(LRPS)** is an algorithm whose purposee is to **receive a list of objects and select one of them randomly,** with the bias that the further to the beginning of the list each one is, the more likely it is to be selected; with a **weighting factor given by the shape of the logarithmic-exponential curve.**
+**📄 [Read the Springer paper](https://link.springer.com/chapter/10.1007/978-3-031-83879-8_4 "Springer Nature Link url").**
 
-<br>
+**📎 Check the [MICAI 2024 slides](https://github.com/arhcoder/LWRS-Algorithm/blob/master/LWRS-MICAI.pdf).**
 
-### Why?
-When working with models that require selection mechanisms, it is common to use algorithms based on chance, in which –metaphorically– a roulette defines which of the n objects will be chosen in each turn. These methods are useful when it is preferred to have the same probability of selection for all elements in a set, however, this may not be the intention.
+**🎼 Check the alternative [Project MIA](https://github.com/arhcoder/MIA).**
 
-The idea behind this proposal is born from the analysis of phenomena for which there are events with a greater frequency of being present, but for which the factor that determines these magnitude is not known. Being concrete, ***LRPS*** originates from my  own attempt to replicate the composition of music through genetic algorithms with randomness, being clear the fact that depending on the style of music, genre, era, etc., certain composition patterns are more common; for example:  4/4 time signature, long or short notes, simple or complex harmonies, etc. Popular music tends to have with more frequency the 4/4 signature, and only major-minor chords, slow voice melodies, relaxed rhythms, among others; It is then that in order to try to replicate the composition of popular music, we could consider these characteristics as the most common, but without neglecting the fact that it is possible to have more variety of decision.
+**⭐ Give a star to [this repository](https://github.com/arhcoder/LWRS-Algorithm "Go and click on the star").**
 
-**Note:** The above mentioned project of music composition with genetic algorithms can be found at: **[github.com/arhcoder/M.I.A](https://github.com/arhcoder/M.I.A "Repository of M.I.A project").**
+---
 
-<br>
+## Abstract
 
-### How?
-If for decision-making in a model there are biases and weights without a number that represents their magnitude; this algorithm proposal can be useful. **For example:** Imagine that you want to decide the flavor of an ice cream to eat, based on a list that contains your favorite flavors:
+ > The *“Logarithmic Weighted Random Selector”* (LWRS) introduces a novel algorithm designed for selecting randomly one item from a list, with the bias that the further to the beginning of the list each one is, the more likely it is to be selected. Unlike traditional selection and sampling methods that rely on numerical fitness scores or require hyperparameter tuning, LWRS employs a logarithmic weighting mechanism to naturally favor items based on their position. It arose from the problem of requiring a method that allows weighting a selection based on the order of preference on a list of elements, for phenomena for which numerical weighting values ​​are unknown but only their order, which unlike algorithms such as *Rank-based Selection*, does not require configuration of hyperparameters. Different mechanisms were explored, such as a *Linear Selection* method and *Exponential Selection*. Discovering that utilizing a logarithmic scale, LWRS achieves a non-numerical preference bias, distinguishing itself from classic methods of weighted random sampling as *Fitness-proportionate selection* and *Tournament Selection*, which do require defined numerical weights, contributing to the field with a straightforward, parameter-free approach to weighted random selection.
 
-1. **🥇 Cookies n' Cream (🍪)**
-2. **🥈 Strawberry (🍓)**
-3. **🥉 Chocolate (🍫)**
-4. **🏅 Butter Pecan (🌰)**
-5. **🏅 Pistachio (🌱)**
+---
 
-In the model it has been decided that Cookies n’ cream flavor is the favorite, so its selection should be more frequent, followed by strawberry, chocolate, etc. The important issue is that there is no a tangible number that allows determining this importance bias with respect to the other flavors, it is simply known that flavors are preferred more as they are higher on the top. The logarithmic scale can provide a growth ratio based on its exponential mathematical nature:
+## Application
+In the following video it is an application of the algorithm, not included in the paper. In this one, the melody ***"Aria di Mezzo Carattere"*** composed by *Nobuo Uematsu* for *Final Fantasy VI* game was taken, and the algorithm was used to decide which notes to use to replace in the melody.
 
-[![Comparison between linear and logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Scales.png?raw=true "Comparison between linear and logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Scales.png?raw=true "Comparison between linear and logarithmic scale")
+To decide each note, the list with the musical notes ordered by hierarchy was passed to the **LWRS** decision algorithm, where preference was given to:
+1. Notes that belong to the chord.
+2. Notes that belong to the tonality.
+3. Notes that do not belong to the tonality.
+Also ordering the notes by their proximity to the first note chosen (chosen only from the notes of the initial chord).
 
-A loose representation of what is the difference between linear and logarithmic scales looks like is shown in the image above; if we take it as an example, we could understand this decision algorithm as placing a point randomly in any of the two scales, where the space between two divisions represents an object to select. For the case of the linear scale, the probability of finding the object between **0 and 1** is the same as that of the object between **1 and 2,** or **2 and 3.** On the other hand, with the logarithmic scale, the probability of falling into the object between **0 and 1** is very different from that of the object between **5 and 6.**
+In this way, three melodies were obtained that were different from the original, which, during the presentation of the work for the ***Mexican International Congress of Artificial Intelligence (MICAI) 2024***, at the ***National Institute of Astrophysics, Optics and Electronics (INAOE)***, on October 21 at *Tonantzintla, Puebla*, were presented to the public present, obtaining answers to the questions:
 
-Using real data for the example of choosing an ice cream flavor, we would have the following scales comparison:
+1. **Which melody did you like the most?**
+2. **Which do you think is the original version?**
 
-[![Linear and logarithmic scales for five flavors](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Flavors.png?raw=true "Linear and logarithmic scales for five flavors")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Flavors.png?raw=true "Linear and logarithmic scales for five flavors")
+With the following statistics:
 
-This is what the ***LRPS*** algorithm scale looks compared to a roulette algorithm. If we throw a random point in this space; we would obtain the decisions for both types of algorithms, which would be:
+*[Missing data :c]*.
 
-[![Selection example for five flavors on linear and logarithmic scales](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Selection.png?raw=true "Selection example for five flavors on linear and logarithmic scales")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Selection.png?raw=true "Selection example for five flavors on linear and logarithmic scales")
+[![MICA Video](https://raw.githubusercontent.com/arhcoder/LWRS-Algorithm/Images/master/LWRS-MICAI.png)](https://raw.githubusercontent.com/arhcoder/LWRS-Algorithm/master/LWRS-MUSIC.mp4)
 
-- **(🍫) Chocolate for a roulette algorithm.**
-- **(🍓) Strawberry: for the LRPS algorithm.**
+This application demonstrated that the algorithm can function as a note selector in a melody, based on basic rules of tonal music hierarchy, without the need to provide extra hyperparameters and achieving results as good as those composed by a person.
 
-As the space of the strawberry is larger than the chocolate ones, it is more likely that we will end up eating strawberry instead of chocolate.
+---
 
-<br>
+## Why?
+Traditional selection methods in evolutionary computing —such as *fitness-proportionate* or *tournament selection*— requires numerical fitness values or hyperparameter configuration to bias choices. **LWRS** addresses scenarios in which the importance of options is determined solely by their ranking in a list. Motivated by challenges in generative models (for example, simulating music composition where stylistic patterns prevail without explicit numerical scores), **LWRS** provides a straightforward solution to achieve selection bias based solely on positional order.
 
-### Math
-The way to build a logarithmic scale adapted to the ***n*** quantity of objects to be selected is possible through a ***P* set of points on a Cartesian axis** in which each point delimits the selection space of each of the n elements of the list, using the following formula:
+This algorithm was born out of the need for the generative music algorithm **MIA**, which is not trained with real music instances and instead needs to make musical aesthetic decisions based on style preferences or hierarchy rules that, when making random decisions, not only mostly converge to certain preferable decisions in this hierarchy, but also leave room for any other to appear. **[Check out the MIA PROJECT here](https://github.com/arhcoder/MIA).**
 
-[![Formula to build a n spaces logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Formula.png?raw=true "Formula to build a n spaces logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Formula.png?raw=true "Formula to build a n spaces logarithmic scale")
+---
 
-That is, given the same case of building the scale on a Cartesian axis, with ***n*** number of spaces (objects) and therefore ***n*** number of division points, the distance between each point ***i*** and the ***origin*** (coordinate (0, 0)) is given by the formula:
+## Formulation
 
-[![Formula for distances on a n spaces logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Distance.png?raw=true "Formula for distances on a n spaces logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Distance.png?raw=true "Formula for distances on a n spaces logarithmic scale")
+To construct a logarithmic scale that adapts to the number of objects ($n$) in a list, **LWRS** simulates a set $\mathbb{P}$ of points on a Cartesian axis. Each point defines the boundary of a sector corresponding to one object. The scale is constructed using the following set definition:
 
-If it is wanted to find the coordinate of point 1, for the example of five ice cream flavors (with n = 5), the coordinate would be:
+$$
+\mathbb{P} = \{ p_i : p_i = \bigl(n \cdot \log_{n+1}(i+1),\ 0\bigr),\ i \in \mathbb{N},\ 1 \leq i \leq n \}
+$$
 
-[![Calculation of the space of a point 1 in logarithmic scale with n = 5](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Point.png?raw=true "Calculation of the space of a point 1 in logarithmic scale with n = 5")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Point.png?raw=true "Calculation of the space of a point 1 in logarithmic scale with n = 5")
+Where:
 
-So, to find all the points needed to build the logarithmic scale of five objects:
+- $p_i$ is the coordinate $(x,y)$ of the $i$-th point.
+- $n$ is the total number of objects.
+- $i$ is the index of the point, with $1 \leq i \leq n$.
 
-[![Calculation of the five points of a logarithmic scale](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Points.png?raw=true "Calculation of the five points of a logarithmic scale")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Points.png?raw=true "Calculation of the five points of a logarithmic scale")
+The $x$-coordinate of each point represents the cumulative distance from the origin along the logarithmic scale. Thus, the distance $d_i$ from the origin $(0,0)$ to the $i$-th point is given by:
 
-[![Five spaces logarithmic scale graphing](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Cartesian.png?raw=true "Five spaces logarithmic scale graphing")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/Cartesian.png?raw=true "Five spaces logarithmic scale graphing")
+$$
+d_i = n \cdot \log_{n+1}(i+1)
+$$
 
-**Note: The use of the Cartesian axis is unnecessary for the algorithm, since it is only necessary to know the distance between the origin and any other point on the scale; so only the distance formula will be necessary: dᵢ = nlogₙ₊₁(i+1).**
+### Example: $n = 5$
 
-<br>
+Consider a list of 5 objects, where the position in the list indicates the preferencea and where being the first one the most favored. The scale is divided into 5 sectors, and the division points are calculated as follows:
 
-### Algorithm:
-The pseudocode of the selection algorithm is shown below:
+**For $i=1$ ⮕** $p_1 = \Bigl( 5 \cdot \log_{6}(1+1),\ 0 \Bigr) \approx (1.934,\, 0)$
 
-[![LRPS Algorithm pseudocode](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/lrps-pseudocode.png?raw=true "LRPS Algorithm pseudocode")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Images/lrps-pseudocode.png?raw=true "LRPS Algorithm pseudocode")
+**For $i=2$ ⮕** $p_2 = \Bigl( 5 \cdot \log_{6}(2+1),\ 0 \Bigr) \approx (3.066,\, 0)$
 
-A list of objects is received as input from which the value of ***n*** is obtained as the number of objects in the selection. A couple of stopping cases occur when the list is empty or contains just one element, otherwise proceeds with the rest of the algorithm, where a random decimal number between 0 and ***n*** is obtained, and a loop for 1 to ***n*** is started.
+**For $i=3$ ⮕** $p_3 = \Bigl( 5 \cdot \log_{6}(3+1),\ 0 \Bigr) \approx (3.869,\, 0)$
 
-Within the loop, the distance from the ***"origin"*** to the first point of the logarithmic scale **(p₁)** is calculated using the same analogy of a Cartesian plane, using the distance formula described above. If the random point is between 0 and the distance of the first point of the scale; that is, if the random point was before p₁ **(random point <= distance to p₁),** then the decision is made to take the object from these space (object number 1), in case the random point is above this first scale point, it continues with the cycle until finding the space in which the random point is.
+**For $i=4$ ⮕** $p_4 = \Bigl( 5 \cdot \log_{6}(4+1),\ 0 \Bigr) \approx (4.491,\, 0)$
 
-LRPS Algorithm has **linear complexity, O(n)** with ***"Big O notation",*** remembering that ***n*** is the number of objects in the initial decision list.
+**For $i=5$ ⮕** $p_5 = \Bigl( 5 \cdot \log_{6}(5+1),\ 0 \Bigr) = (5,\, 0)$
 
-<br>
+These calculations partition the total scale into 5 sectors, where each sector's boundary is determined by the corresponding distance $d_i$.
 
-### Experiments
-Doing count tests for the decisions made by the algorithm in order to check the bias in the choices, **repeating the selection making a certain number of times and counting how many times each of the objects was chosen, was graphed:**
+![Figure 1. Five spaces logarithmic scale graphing](https://github.com/arhcoder/LWRS-Algorithm/blob/master/Images/log5.png?raw=true)
 
-**1. Having 5 objects and 100 repetitions:**
+**Figure 1.** *Five spaces Logarithmic scale graphing.*
 
-[![5 Objects - 100 Repetitions](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/01.%205%20Objects%20-%20100%20Repetitions.png?raw=true "5 Objects - 100 Repetitions")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/01.%205%20Objects%20-%20100%20Repetitions.png?raw=true "5 Objects - 100 Repetitions")
+---
 
-**2. Having 5 objects and 1,000 repetitions:**
+## LWRS Algorithm
+```python
+def lwrs(objects):
+    n = len(objects)
+    
+    if n == 0:
+        return "No objects"
+    if n == 1:
+        return objects[0]
+    
+    random_point = random.uniform(0, n)
+    for i in range(1, n + 1):
+        if random_point <= n * math.log(i+1, n+1):
+            return objects[i-1]
+```
 
-[![5 Objects - 1,000 Repetitions](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/02.%205%20Objects%20-%201,000%20Repetitions.png?raw=true "5 Objects - 1,000 Repetitions")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/02.%205%20Objects%20-%201,000%20Repetitions.png?raw=true "5 Objects - 1,000 Repetitions")
+This code details the core operation: generating a random point and iterating through the logarithmically determined boundaries to select the corresponding object.
 
-**3. Having 5 objects and 1,000,000 repetitions:**
+---
 
-[![5 Objects - 1,000,000 Repetitions](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/03.%205%20Objects%20-%201,000,000%20Repetitions.png?raw=true "5 Objects - 1,000,000 Repetitions")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/03.%205%20Objects%20-%201,000,000%20Repetitions.png?raw=true "5 Objects - 1,000,000 Repetitions")
+## Experiments
 
-**4. Having 10 objects and 100,000 repetitions:**
+To assess the bias introduced by **LWRS**, a series of experiments were performed by repeatedly executing the selection process and recording how frequently each object was chosen. The frequency counts were then plotted to visualize the selection distribution. For instance, when running the algorithm with different list sizes and iteration counts, the following observations were made:
 
-[![10 Objects - 100,000](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/04.%2010%20Objects%20-%20100,000.png?raw=true "10 Objects - 100,000")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/04.%2010%20Objects%20-%20100,000.png?raw=true "10 Objects - 100,000")
 
-**5. Having 20 objects and 10,000,000 repetitions:**
+![Figure 2. Experiment with 5 objects over 100 iterations.](https://github.com/arhcoder/LWRS-Algorithm/blob/master/Images/exp1.png?raw=true)
+**Figure 2.** *Experiment with 5 objects over 100 iterations*.
 
-[![20 Objects - 10,000,000 Repetitions](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/05.%2020%20Objects%20-%2010,000,000%20Repetitions.png?raw=true "20 Objects - 10,000,000 Repetitions")](https://github.com/arhcoder/LRPS-Algorithm/blob/master/Experiments/05.%2020%20Objects%20-%2010,000,000%20Repetitions.png?raw=true "20 Objects - 10,000,000 Repetitions")
+![Figure 3. Experiment with 10 objects over 100,000 iterations](https://github.com/arhcoder/LWRS-Algorithm/blob/master/Images/exp2.png?raw=true)
+**Figure 3.** *Experiment with 10 objects over 100,000 iterations*.
 
-**It can be verified that the shape of a logarithm curve is obtained.**
+![Figure 4. Experiment with 20 objects over 10,000,000 iterations](https://github.com/arhcoder/LWRS-Algorithm/blob/master/Images/exp3.png?raw=true)
+**Figure 4.** *Experiment with 20 objects over 10,000,000 iterations*.
 
-**Note:** For ***random*** numbers generation, the random function of the **64-bit Python v.3.11 core** was used. The counting-graphing script as well as the LRPS algorithm can be found on  [**this repository**](https://github.com/arhcoder/LRPS-Algorithm "Main repository of LRPS Algorithm").
+These plots clearly show a logarithmic decay pattern: objects at the top of the list are selected significantly more often than those near the end. This confirms that **LWRS** effectively biases the selection based solely on positional order without requiring any hyperparameters.
 
-<br>
+---
 
-### Conclusions
-This is just a proposal of algorithm, it may be useful in; for example, decisions making at **genetic algorithms with elitism.** If we have a list of individuals in a population, ordered by their fitness, and we want to make decisions that affect the best individuals more frequently, but we don't want to lose the chance of considering the less fit individuals, this can be a good selection method option. It can also be an interesting proposal to find the optimal point between **exploration and exploitation in metaheuristics.**
+## Alternatives
 
-In the event that for a specific problem it is desired that two or more objects have the same selection probability, it can be considered –for this implementation– that these objects are included in a data structure that contains them as **ONE** single object, so that if the algorithm chooses them, it will throw the objects as a whole, later and by means of a roulette-type decision (such as the linear scale) one of these can be chosen.
+While LWRS offers a parameter-free approach to biasing selections, two other methods based on item order are noteworthy:
 
-Check the algorithm code from the **main repository** at [**github.com/arhcoder/LRPS-Algorithm**](https://github.com/arhcoder/LRPS-Algorithm "Main repository of LRPS Algorithm"), **any collaboration and/or improvement proposal (pull request)** will be welcome, just like a **GitHub star.**
+### 1. Linear Weighted Selection
 
-Write to me at **arhcoder@gmail.com** for any query, or if this contribution was useful to you in any application. Also look for me on social media as **@arhcoder.**
+In the linear approach, each object is assigned a weight inversely proportional to its position in the list. For a list with $n$ objects, the weight for the $i$-th object is given by:
 
-<br>
+$$
+w_i = n - i + 1
+$$
 
-**Thanks for reading 😀**
+The probability of selecting the $i$-th object is then:
 
-**Alejandro Ramos, @arhcoder**
+$$
+p_i = \frac{w_i}{\sum_{j=1}^{n} w_j}
+$$
 
-**💜**
+The pseudocode for this method is:
+
+```plaintext
+Algorithm: linear(objects)
+1. n ← length(objects)
+2. weights ← [n, n-1, ..., 1]
+3. total ← sum(weights)
+4. probabilities ← [w/total for w in weights]
+5. random_value ← random(0, n)
+6. cumulative ← 0
+7. for i from 1 to n do
+8.     cumulative ← cumulative + probabilities[i]
+9.     if cumulative ≥ random_value then
+10.         return objects[i]
+```
+
+### 2. Exponential Weighted Selection
+
+This method builds on the linear approach by raising each weight to a power $x$, thereby intensifying the bias towards top-ranked elements. The probability is calculated as:
+
+$$
+p_i = \frac{(w_i)^x}{\sum_{j=1}^{n} (w_j)^x}
+$$
+
+where $x$ is a chosen exponent. The corresponding pseudocode is:
+
+```plaintext
+Algorithm: exponential(objects, x)
+1. n ← length(objects)
+2. weights ← [n, n-1, ..., 1]
+3. weights ← [w^x for w in weights]
+4. total ← sum(weights)
+5. probabilities ← [w/total for w in weights]
+6. random_value ← random(0, n)
+7. cumulative ← 0
+8. for i from 1 to n do
+9.     cumulative ← cumulative + probabilities[i]
+10.    if cumulative ≥ random_value then
+11.         return objects[i]
+```
+
+**Figure 5** illustrates how varying the exponent $x$ affects the selection bias. With $x=1$, the method reduces to the linear case, while higher values of $x$ progressively increase the preference for items at the top of the list.
+
+![Figure 5: Effect of different exponent values on Exponential Weighted Selection (with $x=1$ representing the linear case)](https://github.com/arhcoder/LWRS-Algorithm/blob/master/Images/exponential.png?raw=true)
+
+---
+
+## Comparison
+
+A comparative evaluation of the selection methods —including *Simple Random Sampling*, *Linear Weighted Selection*, *Exponential Weighted Selection*, and **LWRS**— is summarized in **Figure 6**.
+
+![Figure 6: Comparison between selection algorithms](https://github.com/arhcoder/LWRS-Algorithm/blob/master/Images/comparison.png?raw=true)
+
+---
+
+## Contact and Contributions
+For further information or to contribute to the project, please contact:  
+**Iván Alejandro Ramos Herrera** – **[arhcoder@gmail.com](mailto:arhcoder@gmail.com)**
+
+Contributions, collaborations, and constructive feedback are warmly welcome in **[this repository](https://github.com/arhcoder/LWRS-Algorithm).**
+
+---
