@@ -44,7 +44,7 @@ With the following statistics:
 
 *[Missing data :c]*.
 
-[![MICA Video](https://raw.githubusercontent.com/arhcoder/LWRS-Algorithm/Images/master/LWRS-MICAI.png)](https://raw.githubusercontent.com/arhcoder/LWRS-Algorithm/master/LWRS-MUSIC.mp4)
+https://github.com/user-attachments/assets/f0aeabac-4f8a-4f4d-b967-feb09416c749
 
 This application demonstrated that the algorithm can function as a note selector in a melody, based on basic rules of tonal music hierarchy, without the need to provide extra hyperparameters and achieving results as good as those composed by a person.
 
